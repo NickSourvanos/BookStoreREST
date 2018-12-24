@@ -15,6 +15,7 @@ app.get("/", function(req, res){
   res.send('Hello World');
 });
 
+//Get books list
 app.get("/api/books", function(req, res){
   Book.getBooks(function(error, books){
     if(error){
@@ -24,6 +25,7 @@ app.get("/api/books", function(req, res){
   });
 });
 
+//Find Book by id
 app.get("/api/books/:_id", function(req, res){
   Book.getBookById(req.params._id, function(error, book){
     if(error){
@@ -33,10 +35,24 @@ app.get("/api/books/:_id", function(req, res){
   });
 });
 
+
+//Add Book
 app.post("/api/books", function(req, res){
   //Body-parser gets into play
   var book = req.body;
   Book.addBook(book, function(error, book){
+    if(error){
+      throw error;
+    }
+    res.json(book);
+  });
+});
+
+//Update Book
+app.put("/api/books/:_id", function(req, res){
+  var id = req.params._id;
+  var book = req.body;
+  Book.updateBook(id, book, {}, function(error, book){
     if(error){
       throw error;
     }

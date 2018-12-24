@@ -28,3 +28,19 @@ module.exports.getBookById = function(id, callback){
 module.exports.addBook = function(book, callback){
   Book.create(book, callback);
 }
+
+//Update book
+module.exports.updateBook = function(id, book, options, callback){
+  var query = { _id : id};
+  var updatedBook = {
+    author: book.author ,
+    country: book.country,
+    imageLink: book.imageLink ,
+    language: book.language,
+    link: book.link,
+    pages: book.pages,
+    title: book.title,
+    year: book.year
+  }
+  Book.findOneAndUpdate(query, updatedBook, options, callback);
+}
