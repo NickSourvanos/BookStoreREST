@@ -1,6 +1,8 @@
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
+//Body parser (middle ware body-parser initialization)
+app.use(bodyParser.json());
 var mongoose = require("mongoose");
 
 Book = require("./models/book");
@@ -19,6 +21,26 @@ app.get("/api/books", function(req, res){
       throw error;
     }
     res.json(books);
+  });
+});
+
+app.get("/api/books/:_id", function(req, res){
+  Book.getBookById(req.params._id, function(error, book){
+    if(error){
+      throw error;
+    }
+    res.json(book);
+  });
+});
+
+app.post("/api/books", function(req, res){
+  //Body-parser gets into play
+  var book = req.body;
+  Book.addBook(book, function(error, book){
+    if(error){
+      throw error;
+    }
+    res.json(book);
   });
 });
 
