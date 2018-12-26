@@ -29,6 +29,12 @@ module.exports.addBook = function(book, callback){
   Book.create(book, callback);
 }
 
+//Delete book
+module.exports.deleteBook = function(id, callback){
+  var query = { _id : id };
+  Book.remove(query, callback);
+}
+
 //Update book
 module.exports.updateBook = function(id, book, options, callback){
   var query = { _id : id};

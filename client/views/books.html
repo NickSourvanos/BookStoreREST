@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="panel panel-default" ng-init="getBooks()">
+    <div class="panel-heading">
+      <h3 class="panel-title">Books</h3>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div ng-repeat="book in books" class="col-md-6">
+          <div class="thumbnail">
+            <div class="jumbotron">
+              <div class="card-title">
+                <h4>{{book.title}}</h4>
+              </div>
+              <div class="card">
+
+                <div class="card-body">
+                  <p>Author: {{book.author}}</p>
+                  <p>Language: {{book.language}}</p>
+                  <p>Publication Year: {{book.year}}</p>
+                  <p>Pages: {{book.pages}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
